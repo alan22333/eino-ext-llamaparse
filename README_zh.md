@@ -1,5 +1,7 @@
 # eino-ext-llamaparse
 
+[English](README.md) | [简体中文](README_zh.md)
+
 [Eino](https://github.com/cloudwego/eino) 的 [LlamaParse](https://cloud.llamaindex.ai/llamaparse) 扩展库。利用 LlamaParse 强大的多模态解析能力，将复杂的 PDF、图片、Word 等文档高质量地转换为 Markdown、文本或 JSON 格式，并无缝对接 Eino 的 Document Parser 接口。
 
 ## 特性
@@ -12,7 +14,7 @@
 ## 安装
 
 ```bash
-go get github.com/cloudwego/eino-ext-llamaparse
+go get github.com/alan22333/eino-ext-llamaparse
 ```
 
 ## 快速开始
@@ -24,7 +26,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"github.com/cloudwego/eino-ext-llamaparse/document/llamaparse"
+	"github.com/alan22333/eino-ext-llamaparse/document/llamaparse"
 )
 
 func main() {
@@ -34,7 +36,10 @@ func main() {
 	parser := llamaparse.NewLlamaParser("你的-Llama-API-Key")
 	
 	// 从文件读取
-	file, _ := os.Open("example.pdf")
+	file, err := os.Open("example.pdf")
+	if err != nil {
+		panic(err)
+	}
 	defer file.Close()
 	
 	// 执行解析

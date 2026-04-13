@@ -7,15 +7,19 @@ An extension for [Eino](https://github.com/cloudwego/eino) that integrates [Llam
 ## Installation
 
 ```bash
-go get github.com/cloudwego/eino-ext-llamaparse
+go get github.com/alan22333/eino-ext-llamaparse
 ```
 
 ## Usage
 
 ```go
+package main
+
 import (
     "context"
-    "github.com/cloudwego/eino-ext-llamaparse/document/llamaparse"
+    "fmt"
+    "os"
+    "github.com/alan22333/eino-ext-llamaparse/document/llamaparse"
 )
 
 func main() {
@@ -24,9 +28,16 @@ func main() {
     // Create a new LlamaParser
     parser := llamaparse.NewLlamaParser("your-llama-api-key")
     
+    // Open a file as reader
+    file, err := os.Open("example.pdf")
+    if err != nil {
+        panic(err)
+    }
+    defer file.Close()
+    
     // Parse a document from a reader
     // LlamaParse relies on file extensions, so it's recommended to provide a filename
-    docs, err := parser.Parse(ctx, reader, &llamaparse.ParseOptions{
+    docs, err := parser.Parse(ctx, file, &llamaparse.ParseOptions{
         Filename: "example.pdf",
     })
     

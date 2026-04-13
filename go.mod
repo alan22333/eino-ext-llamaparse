@@ -1,4 +1,4 @@
-module github.com/cloudwego/eino-ext-llamaparse
+module github.com/alan22333/eino-ext-llamaparse
 
 go 1.25.5
 
